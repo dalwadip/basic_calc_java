@@ -2,6 +2,7 @@ package basic_calc;
 
 import java.util.Scanner;
 
+// python changes data type automatically for its variables. java does not
 public class calcMain {
 
 	public static void main(String[] args) {
@@ -9,19 +10,39 @@ public class calcMain {
 		Scanner s = new Scanner(System.in);
 		
 		while(true) {
-			System.out.print("Enter the operation (+,-,*,/,%, or exit): ");
-			String op = s.next();
+//			System.out.print("Enter the operation (+,-,*,/,%, or exit): ");
+//			String op = s.next();
+//			
+//			// ==: compares memory address while .equals() compares actual content
+//			if(op.equals("exit")) {
+//				break; // only breaks the loop, still runs everything outside of loop
+//			}
+//			
+//			System.out.print("Enter the first number: ");
+//			int num1 = s.nextInt();
+//			
+//			System.out.print("Enter the second number: ");
+//			int num2 = s.nextInt();
 			
-			// ==: compares memory address while .equals() compares actual content
-			if(op.equals("exit")) {
-				break; // only breaks the loop, still runs everything outside of loop
+			System.out.println("Enter a calculation (one-line or exit): ");
+			String calc = s.nextLine();
+			
+			if (calc.toLowerCase().equals("exit")) {
+				System.out.println("Bye!");
+				break;
 			}
 			
-			System.out.print("Enter the first number: ");
-			int num1 = s.nextInt();
+			String[] parts = calc.split(" "); //where you wanna split at, python does it by default at space
 			
-			System.out.print("Enter the second number: ");
-			int num2 = s.nextInt();
+			if(parts.length != 3) {
+				System.out.println("Invalid forrmat. Please type number operator number");
+				continue;
+			}
+			
+			int num1 = Integer.parseInt(parts[0]); // cast when converting data types, parts[0] is a String
+			String op = parts[1];
+			int num2 = Integer.parseInt(parts[2]); // convert String to int
+				    
 			
 			switch(op) {
 				case "+": int add = num1 + num2;
